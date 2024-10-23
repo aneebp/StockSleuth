@@ -11,7 +11,7 @@ class Home(View):
             history = data.history(period="max")
             history = history.drop(columns=['Dividends', 'Stock Splits'])
             history.reset_index(inplace=True)
-            history = history.tail(10).to_dict(orient="records")  # Latest 10 records
+            history = history.tail(30).to_dict(orient="records")  # Latest 10 records
 
             # Fetch balance sheet data
             balance_sheet = data.balance_sheet
@@ -33,5 +33,5 @@ class Home(View):
                 "error_message": error_message
             }
 
-        return render(request, 'base/index.html', context)
+        return render(request, 'base/home.html', context)
 
